@@ -41,7 +41,7 @@ const Contact = () => {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-foreground mb-6">
               Ready to Begin Your Real Estate Journey?
             </h2>
-            <p className="text-primary-foreground/70 leading-relaxed mb-10 max-w-md">
+            <p className="text-primary-foreground/90 leading-relaxed mb-10 max-w-md">
               Whether you're buying your first home, selling a property, or exploring investment opportunities, I'm here to help you navigate every step with confidence.
             </p>
 
@@ -53,7 +53,7 @@ const Contact = () => {
                     <item.icon className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="text-primary-foreground/60 text-sm mb-1">
+                    <p className="text-primary-foreground/80 text-sm mb-1 font-medium">
                       {item.label}
                     </p>
                     {item.href ? (
@@ -90,10 +90,10 @@ const Contact = () => {
           {/* Right Column - Map or Additional Info */}
           <div className="bg-primary-foreground/5 rounded-lg p-8 border border-primary-foreground/10">
             <h3 className="font-serif text-2xl font-semibold text-primary-foreground mb-6">
-              Connect Realty
+              Connect Realty TREC# 573369
             </h3>
-            <p className="text-primary-foreground/70 leading-relaxed mb-6">
-              Eldon Peterson is a proud member of Connect Realty, a leading real estate agency in The Woodlands, Texas. With a commitment to excellence and client satisfaction, we're here to help you achieve your real estate goals.
+            <p className="text-primary-foreground/90 leading-relaxed mb-6">
+              Eldon Peterson is a proud member of Connect Realty TREC# 573369, a leading real estate agency in The Woodlands, Texas. With a commitment to excellence and client satisfaction, we're here to help you achieve your real estate goals.
             </p>
 
             {/* Map Embed */}

@@ -57,6 +57,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        neighborhood: {
+          woodlands: "hsl(var(--neighborhood-woodlands))",
+          atascocita: "hsl(var(--neighborhood-atascocita))",
+          humble: "hsl(var(--neighborhood-humble))",
+          kingwood: "hsl(var(--neighborhood-kingwood))",
+          summerwood: "hsl(var(--neighborhood-summerwood))",
+          fallcreek: "hsl(var(--neighborhood-fallcreek))",
+          eado: "hsl(var(--neighborhood-eado))",
+        },
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],
