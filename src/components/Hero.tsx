@@ -51,14 +51,18 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="animate-fade-up-delay-2 mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+          <div className="animate-fade-up-delay-2 mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">300+</div>
+              <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Homes Sold</div>
+            </div>
+            <div className="text-center">
+              <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">500+</div>
+              <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Sides Closed</div>
+            </div>
             <div className="text-center">
               <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">10+</div>
               <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Years Experience</div>
-            </div>
-            <div className="text-center border-x border-primary-foreground/20 px-4">
-              <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">300+</div>
-              <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Homes Sold</div>
             </div>
             <div className="text-center">
               <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">5★</div>

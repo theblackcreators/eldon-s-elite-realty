@@ -135,7 +135,7 @@ export const getRealEstateAgentSchema = () => ({
   '@id': `${SITE_CONFIG.siteUrl}/#person`,
   name: SITE_CONFIG.author,
   jobTitle: 'Real Estate Broker, REALTOR®',
-  description: '10+ years of real estate experience with 300+ homes sold in Northeast Houston',
+  description: '10+ years of real estate experience with 300+ homes sold and over 500+ sides closed in Northeast Houston',
   image: `${SITE_CONFIG.siteUrl}/assets/eldon-portrait.jpg`,
   telephone: SITE_CONFIG.phone,
   email: SITE_CONFIG.email,

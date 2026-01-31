@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   siteName: 'Eldon Peterson Real Estate',
   siteUrl: 'https://eldonpetersonrealestatebroker.netlify.app',
   defaultTitle: 'Eldon Peterson | Real Estate Broker, REALTOR® | Northeast Houston, TX',
-  defaultDescription: 'Eldon Peterson is a seasoned Real Estate Broker and REALTOR® serving Northeast Houston. Specializing in The Woodlands, Atascocita, Humble, Kingwood, Summerwood, Fall Creek, and EaDo properties with 10+ years experience and 300+ homes sold.',
+  defaultDescription: 'Eldon Peterson is a seasoned Real Estate Broker and REALTOR® serving Northeast Houston. Specializing in The Woodlands, Atascocita, Humble, Kingwood, Summerwood, Fall Creek, and EaDo properties with 10+ years experience, 300+ homes sold, and over 500+ sides closed.',
   author: 'Eldon Peterson',
   trecNumber: '675220',
   phone: '(409) 223-7288',
@@ -83,7 +83,7 @@ export const SITE_CONFIG = {
 export const PAGE_SEO = {
   home: {
     title: 'Eldon Peterson | Real Estate Broker & REALTOR® | Northeast Houston, TX',
-    description: 'Expert real estate services in Northeast Houston. Specializing in The Woodlands, Atascocita, Humble, Kingwood, Summerwood, Fall Creek & EaDo. 10+ years experience, 300+ homes sold. TREC# 675220.',
+    description: 'Expert real estate services in Northeast Houston. Specializing in The Woodlands, Atascocita, Humble, Kingwood, Summerwood, Fall Creek & EaDo. 10+ years experience, 300+ homes sold, over 500+ sides closed. TREC# 675220.',
     keywords: 'Northeast Houston real estate, Houston realtor, The Woodlands homes, Atascocita real estate, Humble TX homes, Kingwood realtor, real estate broker Houston',
     path: '/'
   },

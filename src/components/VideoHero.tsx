@@ -121,12 +121,16 @@ const VideoHero = ({
           </div>
 
           {/* Stats - Seller Trust Indicators */}
-          <div className="animate-fade-up-delay-2 mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="animate-fade-up-delay-2 mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">300+</div>
               <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Homes Sold</div>
             </div>
-            <div className="text-center border-x border-primary-foreground/20 px-4">
+            <div className="text-center">
+              <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">500+</div>
+              <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">Sides Closed</div>
+            </div>
+            <div className="text-center">
               <div className="font-serif text-3xl md:text-4xl font-semibold text-primary-foreground text-shadow-md">98%</div>
               <div className="text-sm md:text-base text-primary-foreground/90 mt-1 font-medium text-shadow-sm">List-to-Sale Ratio</div>
             </div>

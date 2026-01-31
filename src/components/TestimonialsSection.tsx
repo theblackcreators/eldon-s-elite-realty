@@ -85,17 +85,22 @@ const TestimonialsSection = () => {
         )}
 
         <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-8 p-6 bg-card rounded-lg border">
+          <div className="inline-flex flex-wrap items-center justify-center gap-6 md:gap-8 p-6 bg-card rounded-lg border">
             <div className="text-center">
               <p className="text-4xl font-bold text-primary">300+</p>
               <p className="text-sm text-muted-foreground">Homes Sold</p>
             </div>
-            <div className="h-12 w-px bg-border" />
+            <div className="h-12 w-px bg-border hidden md:block" />
+            <div className="text-center">
+              <p className="text-4xl font-bold text-primary">500+</p>
+              <p className="text-sm text-muted-foreground">Sides Closed</p>
+            </div>
+            <div className="h-12 w-px bg-border hidden md:block" />
             <div className="text-center">
               <p className="text-4xl font-bold text-primary">5.0</p>
               <p className="text-sm text-muted-foreground">Average Rating</p>
             </div>
-            <div className="h-12 w-px bg-border" />
+            <div className="h-12 w-px bg-border hidden md:block" />
             <div className="text-center">
               <p className="text-4xl font-bold text-primary">10+</p>
               <p className="text-sm text-muted-foreground">Years Experience</p>
