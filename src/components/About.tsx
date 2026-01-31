@@ -1,6 +1,12 @@
-import { Award, Users, MapPin, Briefcase, Play } from "lucide-react";
+import { Award, Users, MapPin, Briefcase, Play, BadgeCheck, GraduationCap, Home, TrendingUp, Handshake, Star } from "lucide-react";
 import eldonPortrait from "@/assets/eldon-portrait.jpg";
 import VideoPlayer from "@/components/VideoPlayer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const About = () => {
   const highlights = [
@@ -23,6 +29,45 @@ const About = () => {
       icon: Briefcase,
       title: "Connect Realty",
       description: "Backed by a trusted, established agency",
+    },
+  ];
+
+  const credentials = [
+    {
+      icon: GraduationCap,
+      abbreviation: "EPRO",
+      fullName: "NAR's e-PRO®",
+      tooltip: "Certification for real estate professionals who leverage technology and digital marketing to enhance client service and grow their business online.",
+    },
+    {
+      icon: Home,
+      abbreviation: "RSPS",
+      fullName: "Resort & Second Home Property Specialist",
+      tooltip: "Designation for agents specializing in resort, vacation, and second-home properties, with expertise in unique financing, tax implications, and investment strategies.",
+    },
+    {
+      icon: BadgeCheck,
+      abbreviation: "SFR",
+      fullName: "Short Sales & Foreclosure Resource",
+      tooltip: "Certification for agents trained in the complexities of short sales and foreclosures, helping clients navigate distressed property transactions.",
+    },
+    {
+      icon: TrendingUp,
+      abbreviation: "PSA",
+      fullName: "Pricing Strategy Advisor",
+      tooltip: "Designation for agents skilled in pricing strategies, competitive market analysis, and helping sellers maximize their home's value.",
+    },
+    {
+      icon: Handshake,
+      abbreviation: "RENE",
+      fullName: "Real Estate Negotiation Expert",
+      tooltip: "Advanced certification in negotiation strategies and techniques to achieve the best outcomes for buyers and sellers.",
+    },
+    {
+      icon: Star,
+      abbreviation: "C2EX",
+      fullName: "Commitment to Excellence Endorsed",
+      tooltip: "NAR's endorsement recognizing REALTORS® committed to continuous professional development, ethical practice, and excellence in client service.",
     },
   ];
 
@@ -89,6 +134,61 @@ const About = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Professional Credentials & Designations Section */}
+        <div className="mt-24">
+          <div className="text-center mb-12">
+            <p className="text-accent font-medium tracking-[0.2em] uppercase text-sm mb-4">
+              Professional Credentials
+            </p>
+            <h3 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+              REALTOR® Certifications & Designations
+            </h3>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Eldon holds multiple specialized certifications from the National Association of REALTORS®, demonstrating his commitment to expertise, continuous education, and excellence in serving clients.
+            </p>
+          </div>
+
+          <TooltipProvider>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {credentials.map((credential, index) => (
+                <Tooltip key={index} delayDuration={200}>
+                  <TooltipTrigger asChild>
+                    <div className="flex flex-col items-center p-6 bg-background rounded-lg hover-lift shadow-soft cursor-help transition-all hover:shadow-lg hover:border-accent/20 border border-transparent">
+                      {/* Icon/Logo Placeholder */}
+                      <div className="w-20 h-20 mb-4 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                        <credential.icon className="h-10 w-10 text-accent" />
+                      </div>
+
+                      {/* Credential Abbreviation */}
+                      <div className="text-center">
+                        <h4 className="font-bold text-lg text-foreground mb-1">
+                          {credential.abbreviation}
+                        </h4>
+                        <p className="text-xs text-muted-foreground leading-tight">
+                          {credential.fullName}
+                        </p>
+                      </div>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    className="max-w-xs p-4 bg-popover text-popover-foreground shadow-xl border-accent/20"
+                    side="top"
+                  >
+                    <p className="text-sm leading-relaxed">{credential.tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </TooltipProvider>
+
+          {/* Note about placeholder icons */}
+          <div className="mt-8 text-center">
+            <p className="text-xs text-muted-foreground italic">
+              Note: Icons are placeholders. Official NAR certification logos will be added.
+            </p>
           </div>
         </div>
 
