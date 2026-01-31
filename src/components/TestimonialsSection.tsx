@@ -54,20 +54,24 @@ const TestimonialsSection = () => {
                     </div>
                   </div>
                 </div>
-                
-                <p className="text-muted-foreground mb-4 italic">"{testimonial.text}"</p>
-                
+
+                <p className="text-muted-foreground mb-4 italic line-clamp-6">"{testimonial.text}"</p>
+
                 <div className="border-t pt-4">
                   <p className="font-semibold">{testimonial.name}</p>
                   <div className="flex flex-wrap gap-2 mt-2">
                     <Badge variant="secondary">{testimonial.neighborhood}</Badge>
                     <Badge variant="outline">{testimonial.zipCode}</Badge>
                     <Badge variant="default">{testimonial.propertyType}</Badge>
+                    <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20">
+                      {testimonial.source}
+                      {testimonial.verified && ' ✓'}
+                    </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
-                    {new Date(testimonial.date).toLocaleDateString('en-US', { 
-                      month: 'long', 
-                      year: 'numeric' 
+                    {new Date(testimonial.date).toLocaleDateString('en-US', {
+                      month: 'long',
+                      year: 'numeric'
                     })}
                   </p>
                 </div>

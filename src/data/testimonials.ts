@@ -7,88 +7,104 @@ export interface Testimonial {
   text: string;
   date: string;
   propertyType: 'Buyer' | 'Seller' | 'Both';
+  type: 'buyer' | 'seller' | 'both';
+  location?: string;
+  source: 'Zillow' | 'Google' | 'Realtor.com';
+  verified?: boolean;
+  categories?: {
+    localKnowledge?: number;
+    processExpertise?: number;
+    responsiveness?: number;
+    negotiationSkills?: number;
+    marketExpertise?: number;
+    professionalismCommunication?: number;
+  };
 }
 
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Sarah & Michael Johnson',
-    neighborhood: 'Atascocita',
-    zipCode: '77346',
+    name: 'Verified Buyer',
+    neighborhood: 'Beaumont',
+    zipCode: '77701',
     rating: 5,
-    text: 'Eldon helped us find our dream home in Atascocita! His knowledge of the area and the local schools was invaluable. He was patient, professional, and always available to answer our questions.',
-    date: '2025-12-15',
-    propertyType: 'Buyer'
+    text: 'Mr. Eldon Peterson help us find our first home, we thought it will be difficult and stressful but he made it easy and fast as possible. He listened all our needs in a house and found a perfect match.',
+    date: '2019-01-01',
+    propertyType: 'Buyer',
+    type: 'buyer',
+    location: 'Beaumont, TX',
+    source: 'Zillow',
+    categories: {
+      localKnowledge: 5,
+      processExpertise: 5,
+      responsiveness: 5,
+      negotiationSkills: 5
+    }
   },
   {
     id: '2',
-    name: 'Robert Chen',
-    neighborhood: 'Kingwood',
-    zipCode: '77339',
+    name: 'Verified Seller',
+    neighborhood: 'Stafford',
+    zipCode: '77477',
     rating: 5,
-    text: 'We sold our Kingwood home in just 12 days thanks to Eldon\'s expert marketing strategy. He priced it perfectly and brought multiple offers. Highly recommend!',
-    date: '2025-11-20',
-    propertyType: 'Seller'
+    text: 'Eldon Peterson not only helped me sell my house but also assisted in finding my new home for relocation. He is an awesome Realtor, very professional and answered all my questions and concerns.',
+    date: '2017-01-01',
+    propertyType: 'Both',
+    type: 'both',
+    location: 'Stafford, TX',
+    source: 'Zillow',
+    categories: {
+      localKnowledge: 5,
+      processExpertise: 5,
+      responsiveness: 5,
+      negotiationSkills: 5
+    }
   },
   {
     id: '3',
-    name: 'Jennifer Martinez',
-    neighborhood: 'Humble',
-    zipCode: '77338',
+    name: 'Sharon Billwilliams (Rev. Tommie and Sharon Williams Sr.)',
+    neighborhood: 'Northeast Houston',
+    zipCode: '77044',
     rating: 5,
-    text: 'As a first-time homebuyer, I was nervous about the process. Eldon walked me through every step and helped me find an amazing home in Humble within my budget. Couldn\'t be happier!',
-    date: '2025-10-08',
-    propertyType: 'Buyer'
+    text: 'Special thank you to Mr. Eldon Peterson. An Excellent Realtor. ⭐️⭐️⭐️⭐️⭐️5 stars!!!! I was very nervous and hesitant when it came to choosing a Realtor because I don\'t easily trust people. After all, buying a home is the biggest purchase I will ever make in my life. First impressions are everything and with Eldon, from our first meeting I was at ease. He was professional, friendly and patient with us. He gave us an introduction of what to expect from beginning to the end. I loved how he used a visual aid (large computer screen), which gave us a better understanding of certain terms and the process of buying a home. He was very detailed, answered every question, keeping us up to date every step of the way. He was always available, phone, text, call, email and/or in person. One of the things that sticks out for me with Eldon, he knows how to negotiate and what to ask for when purchasing a home. With Eldon, I never doubted that my husband and I would find the home of our dreams. He worked hard and represented us. I am so appreciative of all his efforts. In closing, if you need a Realtor who is personal, very knowledgeable, has integrity, available for you and gets the job done, please call Eldon. I highly recommend him. I thank God for Eldon and wish him much success in helping others dream become a reality, becoming homeowners. ~Rev. Tommie and Sharon Williams Sr.',
+    date: '2022-01-01',
+    propertyType: 'Buyer',
+    type: 'buyer',
+    location: 'Northeast Houston, TX',
+    source: 'Google'
   },
   {
     id: '4',
-    name: 'David & Lisa Thompson',
-    neighborhood: 'Summerwood',
-    zipCode: '77044',
+    name: 'Clint Troutman',
+    neighborhood: 'Houston',
+    zipCode: '77001',
     rating: 5,
-    text: 'Eldon helped us both sell our old home and buy a new one in Summerwood. His coordination and expertise made what could have been stressful completely seamless.',
-    date: '2025-09-25',
-    propertyType: 'Both'
+    text: 'Went above & beyond to show me a property being rented out while also being sold, DIDN\'T have to explain the situation or help me, BUT he DID!',
+    date: '2023-01-01',
+    propertyType: 'Buyer',
+    type: 'buyer',
+    location: 'Houston, TX',
+    source: 'Google'
   },
   {
     id: '5',
-    name: 'Amanda Rodriguez',
-    neighborhood: 'Fall Creek',
-    zipCode: '77044',
+    name: 'Verified Seller',
+    neighborhood: 'Beaumont',
+    zipCode: '77701',
     rating: 5,
-    text: 'We wanted a lakeside property and Eldon knew exactly where to look. He found us the perfect home in Fall Creek with amazing amenities. His local knowledge is unmatched!',
-    date: '2025-08-12',
-    propertyType: 'Buyer'
-  },
-  {
-    id: '6',
-    name: 'Marcus Williams',
-    neighborhood: 'EaDo',
-    zipCode: '77003',
-    rating: 5,
-    text: 'Eldon helped me invest in an EaDo loft. His understanding of the urban market and appreciation potential was spot-on. Great investment thanks to his guidance!',
-    date: '2025-07-30',
-    propertyType: 'Buyer'
-  },
-  {
-    id: '7',
-    name: 'Patricia & James Anderson',
-    neighborhood: 'Kingwood',
-    zipCode: '77339',
-    rating: 5,
-    text: 'After 20 years in our Kingwood home, we decided to downsize. Eldon handled everything professionally and got us top dollar. He truly cares about his clients.',
-    date: '2025-06-18',
-    propertyType: 'Seller'
-  },
-  {
-    id: '8',
-    name: 'Kevin Nguyen',
-    neighborhood: 'Atascocita',
-    zipCode: '77346',
-    rating: 5,
-    text: 'Eldon\'s expertise in the Atascocita market is incredible. He knew the neighborhoods, the schools, and helped us find exactly what we were looking for. 10/10 experience!',
-    date: '2025-05-22',
-    propertyType: 'Buyer'
+    text: 'Mr. Eldon Peterson help us find our first home, we thought it will be difficult and stressful but he made it easy and fast as possible. He listened all our needs in a house and found a perfect match.',
+    date: '2023-02-13',
+    propertyType: 'Seller',
+    type: 'seller',
+    location: 'Beaumont, TX',
+    source: 'Realtor.com',
+    verified: true,
+    categories: {
+      responsiveness: 5,
+      marketExpertise: 5,
+      negotiationSkills: 5,
+      professionalismCommunication: 5
+    }
   }
 ];
 
