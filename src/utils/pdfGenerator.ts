@@ -70,30 +70,31 @@ const addFooter = (doc: jsPDF, pageNumber: number, totalPages: number) => {
 const generateMarketReport = (doc: jsPDF, neighborhoodId: string, title: string) => {
   const neighborhood = neighborhoods.find(n => n.id === neighborhoodId);
   if (!neighborhood) return;
-  
+
   let yPos = 50;
-  
+  let currentPage = 1;
+
   // Title
   doc.setTextColor(...COLORS.secondary);
   doc.setFontSize(22);
   doc.setFont('helvetica', 'bold');
   doc.text(title, 15, yPos);
   yPos += 10;
-  
+
   // Subtitle
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(100, 100, 100);
   doc.text(`${neighborhood.name} - ZIP Code(s): ${neighborhood.zipCodes.join(', ')}`, 15, yPos);
   yPos += 15;
-  
+
   // Market Statistics Table
   doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...COLORS.primary);
   doc.text('Market Statistics', 15, yPos);
   yPos += 5;
-  
+
   autoTable(doc, {
     startY: yPos,
     head: [['Metric', 'Value']],
@@ -109,24 +110,25 @@ const generateMarketReport = (doc: jsPDF, neighborhoodId: string, title: string)
     headStyles: { fillColor: COLORS.primary },
     margin: { left: 15, right: 15 }
   });
-  
+
   yPos = (doc as any).lastAutoTable.finalY + 15;
-  
+
   // Neighborhood Highlights
   doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...COLORS.primary);
   doc.text('Neighborhood Highlights', 15, yPos);
   yPos += 8;
-  
+
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...COLORS.text);
-  
+
   neighborhood.highlights.forEach((highlight, index) => {
     if (yPos > 250) {
       doc.addPage();
-      addHeader(doc, 2);
+      currentPage++;
+      addHeader(doc, currentPage);
       yPos = 50;
     }
     doc.text(`• ${highlight}`, 20, yPos);
@@ -137,6 +139,7 @@ const generateMarketReport = (doc: jsPDF, neighborhoodId: string, title: string)
 // Generate Buyer/Seller Guide PDF
 const generateGuide = (doc: jsPDF, title: string, type: 'buyer' | 'seller') => {
   let yPos = 50;
+  let currentPage = 1;
 
   // Title
   doc.setTextColor(...COLORS.secondary);
@@ -150,8 +153,8 @@ const generateGuide = (doc: jsPDF, title: string, type: 'buyer' | 'seller') => {
   content.forEach((section) => {
     if (yPos > 250) {
       doc.addPage();
-      addHeader(doc, 2);
-      addFooter(doc, 2, 3);
+      currentPage++;
+      addHeader(doc, currentPage);
       yPos = 50;
     }
 
@@ -172,8 +175,8 @@ const generateGuide = (doc: jsPDF, title: string, type: 'buyer' | 'seller') => {
       lines.forEach((line: string) => {
         if (yPos > 250) {
           doc.addPage();
-          addHeader(doc, 2);
-          addFooter(doc, 2, 3);
+          currentPage++;
+          addHeader(doc, currentPage);
           yPos = 50;
         }
         doc.text(line, 20, yPos);
@@ -269,6 +272,7 @@ const getSellerGuideContent = () => [
 // Generate Neighborhood Guide PDF
 const generateNeighborhoodGuide = (doc: jsPDF, title: string, neighborhoodId?: string) => {
   let yPos = 50;
+  let currentPage = 1;
 
   doc.setTextColor(...COLORS.secondary);
   doc.setFontSize(22);
@@ -303,7 +307,7 @@ const generateNeighborhoodGuide = (doc: jsPDF, title: string, neighborhoodId?: s
         body: neighborhood.schools.map(school => [
           school.name,
           school.type,
-          school.rating,
+          school.rating || 'N/A',
           school.district
         ]),
         theme: 'striped',
@@ -316,7 +320,8 @@ const generateNeighborhoodGuide = (doc: jsPDF, title: string, neighborhoodId?: s
       // Amenities
       if (yPos > 200) {
         doc.addPage();
-        addHeader(doc, 2);
+        currentPage++;
+        addHeader(doc, currentPage);
         yPos = 50;
       }
 
@@ -333,13 +338,96 @@ const generateNeighborhoodGuide = (doc: jsPDF, title: string, neighborhoodId?: s
       neighborhood.amenities.forEach((amenity) => {
         if (yPos > 250) {
           doc.addPage();
-          addHeader(doc, 3);
+          currentPage++;
+          addHeader(doc, currentPage);
           yPos = 50;
         }
-        doc.text(`• ${amenity.name} - ${amenity.type}`, 20, yPos);
+        doc.text(`• ${amenity.name} - ${amenity.category}`, 20, yPos);
         yPos += 6;
       });
     }
+  } else {
+    // Generic Lake Houston Living Guide content when no specific neighborhood is provided
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...COLORS.text);
+
+    const introText = 'Discover the beauty and lifestyle of Lake Houston area communities. This comprehensive guide covers waterfront living opportunities in Northeast Houston\'s most desirable neighborhoods.';
+    const introLines = doc.splitTextToSize(introText, 170);
+    introLines.forEach((line: string) => {
+      doc.text(line, 15, yPos);
+      yPos += 6;
+    });
+    yPos += 10;
+
+    // Featured Communities
+    const lakeCommunities = neighborhoods.filter(n =>
+      ['atascocita', 'summerwood', 'fall-creek', 'kingwood'].includes(n.id)
+    );
+
+    lakeCommunities.forEach((community) => {
+      if (yPos > 230) {
+        doc.addPage();
+        currentPage++;
+        addHeader(doc, currentPage);
+        yPos = 50;
+      }
+
+      // Community name
+      doc.setFontSize(16);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(...COLORS.primary);
+      doc.text(community.name, 15, yPos);
+      yPos += 8;
+
+      // Tagline
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'italic');
+      doc.setTextColor(100, 100, 100);
+      doc.text(community.tagline, 15, yPos);
+      yPos += 8;
+
+      // Description
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(...COLORS.text);
+      const descLines = doc.splitTextToSize(community.description, 170);
+      descLines.forEach((line: string) => {
+        if (yPos > 250) {
+          doc.addPage();
+          currentPage++;
+          addHeader(doc, currentPage);
+          yPos = 50;
+        }
+        doc.text(line, 15, yPos);
+        yPos += 5;
+      });
+      yPos += 5;
+
+      // Key highlights
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(...COLORS.primary);
+      doc.text('Key Highlights:', 15, yPos);
+      yPos += 6;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(...COLORS.text);
+      community.highlights.slice(0, 5).forEach((highlight) => {
+        if (yPos > 250) {
+          doc.addPage();
+          currentPage++;
+          addHeader(doc, currentPage);
+          yPos = 50;
+        }
+        const highlightLines = doc.splitTextToSize(`• ${highlight}`, 165);
+        highlightLines.forEach((line: string) => {
+          doc.text(line, 20, yPos);
+          yPos += 5;
+        });
+      });
+      yPos += 10;
+    });
   }
 };
 
@@ -368,9 +456,34 @@ export const generateResourcePDF = (resourceId: string, resourceTitle: string, c
     addFooter(doc, i, totalPages);
   }
 
-  // Download the PDF
+  // Download the PDF using blob method (more reliable across browsers)
   const fileName = `${resourceId}.pdf`;
-  doc.save(fileName);
+
+  try {
+    // Create blob from PDF
+    const pdfBlob = doc.output('blob');
+
+    // Create download link
+    const url = URL.createObjectURL(pdfBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.style.display = 'none';
+
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+
+    // Cleanup
+    setTimeout(() => {
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }, 100);
+  } catch (error) {
+    console.error('Error during PDF download:', error);
+    // Fallback to simple save
+    doc.save(fileName);
+  }
 
   return fileName;
 };
