@@ -21,6 +21,7 @@ import {
   Calculator, Building2, Handshake
 } from 'lucide-react';
 import { testimonials } from '@/data/testimonials';
+import { generateResourcePDF } from '@/utils/pdfGenerator';
 
 const buyerLeadSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -45,7 +46,7 @@ const BuyersPage = () => {
     try {
       const leadTag = 'Buyers Page-Consultation Request';
       console.log('Buyer lead captured:', { ...data, tag: leadTag });
-      
+
       toast({
         title: "Request Received!",
         description: "We'll contact you within 24 hours to discuss your home buying goals.",
@@ -59,6 +60,28 @@ const BuyersPage = () => {
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleDownloadBuyerGuide = () => {
+    try {
+      generateResourcePDF(
+        'first-time-buyer',
+        'First-Time Homebuyer Guide',
+        'Buyer Guide'
+      );
+
+      toast({
+        title: "Download Started!",
+        description: "Your Buyer Guide is downloading now.",
+      });
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast({
+        title: "Download Error",
+        description: "Please try again or contact us at (409) 223-7288.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -421,12 +444,15 @@ const BuyersPage = () => {
                       (409) 223-7288
                     </Button>
                   </a>
-                  <a href="#buyer-guide">
-                    <Button size="lg" variant="outline" className="gap-2 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
-                      <Download className="h-5 w-5" />
-                      Download Buyer Guide
-                    </Button>
-                  </a>
+                  <Button
+                    onClick={handleDownloadBuyerGuide}
+                    size="lg"
+                    variant="outline"
+                    className="gap-2 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto"
+                  >
+                    <Download className="h-5 w-5" />
+                    Download Buyer Guide
+                  </Button>
                 </div>
               </div>
 

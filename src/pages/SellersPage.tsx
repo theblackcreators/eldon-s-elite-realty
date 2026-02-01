@@ -21,6 +21,7 @@ import {
   BarChart3, Share2, Eye
 } from 'lucide-react';
 import { testimonials } from '@/data/testimonials';
+import { generateResourcePDF } from '@/utils/pdfGenerator';
 
 const sellerLeadSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -46,7 +47,7 @@ const SellersPage = () => {
     try {
       const leadTag = 'Sellers Page-Listing Consultation';
       console.log('Seller lead captured:', { ...data, tag: leadTag });
-      
+
       toast({
         title: "Request Received!",
         description: "We'll contact you within 24 hours to discuss selling your home.",
@@ -60,6 +61,28 @@ const SellersPage = () => {
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleDownloadSellerGuide = () => {
+    try {
+      generateResourcePDF(
+        'seller-checklist',
+        'Home Seller\'s Checklist',
+        'Seller Guide'
+      );
+
+      toast({
+        title: "Download Started!",
+        description: "Your Seller Guide is downloading now.",
+      });
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast({
+        title: "Download Error",
+        description: "Please try again or contact us at (409) 223-7288.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -395,12 +418,15 @@ const SellersPage = () => {
                       (409) 223-7288
                     </Button>
                   </a>
-                  <a href="#seller-guide">
-                    <Button size="lg" variant="outline" className="gap-2 bg-transparent border-white text-white hover:bg-white hover:text-accent w-full sm:w-auto">
-                      <Download className="h-5 w-5" />
-                      Download Seller Guide
-                    </Button>
-                  </a>
+                  <Button
+                    onClick={handleDownloadSellerGuide}
+                    size="lg"
+                    variant="outline"
+                    className="gap-2 bg-transparent border-white text-white hover:bg-white hover:text-accent w-full sm:w-auto"
+                  >
+                    <Download className="h-5 w-5" />
+                    Download Seller Guide
+                  </Button>
                 </div>
               </div>
 
